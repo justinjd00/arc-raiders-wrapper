@@ -1,13 +1,11 @@
 import { ApiClient, createApiClient } from '../client';
-import type { ApiResponse } from '../types';
+import { Cache } from '../cache';
 import type {
   ArcRaidersItem,
   Weapon,
   Armor,
   Quest,
-  ARC,
   ArcMission,
-  Location,
   MapData,
   Trader,
   TraderItem,
@@ -19,12 +17,16 @@ export interface ArcRaidersClientConfig {
   baseURL?: string;
   apiKey?: string;
   timeout?: number;
+  cacheEnabled?: boolean;
+  cacheTTL?: number;
 }
 
 export class ArcRaidersClient {
-  private client: ApiClient;
-  private baseURL = 'https://metaforge.app/api/arc-raiders';
+  private readonly client: ApiClient;
+  private readonly cache: Cache;
+  private readonly baseURL = 'https://metaforge.app/api/arc-raiders';
   private readonly defaultTimeout = 10000;
+  private readonly cacheEnabled: boolean;
 
   constructor(config?: ArcRaidersClientConfig) {
     this.client = createApiClient({
@@ -35,6 +37,17 @@ export class ArcRaidersClient {
       },
       timeout: config?.timeout || this.defaultTimeout,
     });
+    this.cacheEnabled = config?.cacheEnabled !== false;
+    this.cache = new Cache(config?.cacheTTL || 5 * 60 * 1000);
+  }
+
+  private getCacheKey(endpoint: string, params?: Record<string, string | number>): string {
+    const paramString = params ? JSON.stringify(params) : '';
+    return `${endpoint}:${paramString}`;
+  }
+
+  clearCache(): void {
+    this.cache.clear();
   }
 
   private buildQueryParams(filter?: ArcRaidersFilter): Record<string, string | number> {
@@ -74,24 +87,68 @@ export class ArcRaidersClient {
   }
 
   async getItems(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<ArcRaidersItem[]>> {
+    const params = this.buildQueryParams(filter);
+    const cacheKey = this.getCacheKey('/items', params);
+    
+    if (this.cacheEnabled) {
+      const cached = this.cache.get<ArcRaidersApiResponse<ArcRaidersItem[]>>(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
+
     const response = await this.client.get<ArcRaidersApiResponse<ArcRaidersItem[]>>(
       '/items',
-      { params: this.buildQueryParams(filter) }
+      { params }
     );
+
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, response.data);
+    }
+
     return response.data;
   }
 
   async getItemById(id: string): Promise<ArcRaidersItem> {
+    const cacheKey = this.getCacheKey(`/items/${id}`);
+    
+    if (this.cacheEnabled) {
+      const cached = this.cache.get<ArcRaidersItem>(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
+
     const response = await this.client.get<ArcRaidersItem>(`/items/${id}`);
-    return response.data as ArcRaidersItem;
+    
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, response.data);
+    }
+
+    return response.data;
   }
 
   async getWeapons(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<Weapon[]>> {
     const filterWithType = { ...filter, type: 'weapon' as const };
+    const params = this.buildQueryParams(filterWithType);
+    const cacheKey = this.getCacheKey('/items', { ...params, type: 'weapon' });
+    
+    if (this.cacheEnabled) {
+      const cached = this.cache.get<ArcRaidersApiResponse<Weapon[]>>(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
+
     const response = await this.client.get<ArcRaidersApiResponse<Weapon[]>>(
       '/items',
-      { params: this.buildQueryParams(filterWithType) }
+      { params }
     );
+
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, response.data);
+    }
+
     return response.data;
   }
 
@@ -115,29 +172,59 @@ export class ArcRaidersClient {
   }
 
   async getQuests(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<Quest[]>> {
+    const params = this.buildQueryParams(filter);
+    const cacheKey = this.getCacheKey('/quests', params);
+    
+    if (this.cacheEnabled) {
+      const cached = this.cache.get<ArcRaidersApiResponse<Quest[]>>(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
+
     const response = await this.client.get<ArcRaidersApiResponse<Quest[]>>(
       '/quests',
-      { params: this.buildQueryParams(filter) }
+      { params }
     );
+
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, response.data);
+    }
+
     return response.data;
   }
 
   async getQuestById(id: string): Promise<Quest> {
     const response = await this.client.get<Quest>(`/quests/${id}`);
-    return response.data as Quest;
+    return response.data;
   }
 
   async getARCs(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<ArcMission[]>> {
+    const params = this.buildQueryParams(filter);
+    const cacheKey = this.getCacheKey('/arcs', params);
+    
+    if (this.cacheEnabled) {
+      const cached = this.cache.get<ArcRaidersApiResponse<ArcMission[]>>(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
+
     const response = await this.client.get<ArcRaidersApiResponse<ArcMission[]>>(
       '/arcs',
-      { params: this.buildQueryParams(filter) }
+      { params }
     );
+
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, response.data);
+    }
+
     return response.data;
   }
 
   async getARCById(id: string): Promise<ArcMission> {
     const response = await this.client.get<ArcMission>(`/arcs/${id}`);
-    return response.data as ArcMission;
+    return response.data;
   }
 
   async getMapData(mapName: string): Promise<MapData> {
@@ -153,7 +240,7 @@ export class ArcRaidersClient {
     const response = await mapClient.get<MapData>('/game-map-data', {
       params: { map: normalizedMapName },
     });
-    return response.data as MapData;
+    return response.data;
   }
 
   async getMaps(): Promise<MapData[]> {
@@ -165,13 +252,28 @@ export class ArcRaidersClient {
   }
 
   async getTraders(): Promise<Record<string, TraderItem[]>> {
+    const cacheKey = this.getCacheKey('/traders');
+    
+    if (this.cacheEnabled) {
+      const cached = this.cache.get<Record<string, TraderItem[]>>(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
+
     const response = await this.client.get<{ success: boolean; data: Record<string, TraderItem[]> }>('/traders');
-    return response.data.data || {};
+    const data = response.data.data || {};
+    
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, data);
+    }
+
+    return data;
   }
 
   async getTraderById(id: string): Promise<Trader> {
     const response = await this.client.get<Trader>(`/traders/${id}`);
-    return response.data as Trader;
+    return response.data;
   }
 
   async search(query: string, filter?: ArcRaidersFilter): Promise<{

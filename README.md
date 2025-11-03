@@ -62,6 +62,11 @@ console.log(items.data);
 -  Filtering and pagination support
 -  Robust error handling
 -  Simple and intuitive API
+-  In-memory caching (configurable TTL)
+-  React Hooks for easy integration
+-  CLI tool for command-line usage
+-  Data export (JSON, CSV)
+-  Analytics and statistics helpers
 
 ## Basic Usage
 
@@ -85,6 +90,16 @@ const weapons = await client.getWeapons({ rarity: 'legendary', page: 1, pageSize
 const quests = await client.getQuests({ difficulty: 'hard', page: 1, pageSize: 20 });
 const maps = await client.getMaps();
 const traders = await client.getTraders();
+```
+
+
+### CLI Tool
+
+```bash
+npx arc-raiders items
+npx arc-raiders weapons --rarity legendary
+npx arc-raiders export json --output data.json
+npx arc-raiders stats
 ```
 
 ## Links

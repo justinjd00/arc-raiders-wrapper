@@ -33,3 +33,32 @@ export type {
   Waypoint,
   ResponseMeta,
 } from './arc-raiders/types';
+
+export {
+  useArcRaiders,
+  useItems,
+  useWeapons,
+  useQuests,
+  useARCs,
+} from './hooks/useArcRaiders';
+
+export {
+  exportToJSON,
+  exportToJSONString,
+} from './export/json';
+
+export {
+  exportToCSV,
+  exportToCSVString,
+} from './export/csv';
+
+export {
+  calculateStats,
+  getWeaponStats,
+  getArmorStats,
+  getRarityDistribution,
+  findBestWeapon,
+  findBestArmor,
+} from './analytics/stats';
+
+export type { Stats } from './analytics/stats';

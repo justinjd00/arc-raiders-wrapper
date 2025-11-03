@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-01-03
+
+### Added
+- In-memory caching with configurable TTL (default: 5 minutes)
+- React Hooks: `useArcRaiders`, `useItems`, `useWeapons`, `useQuests`, `useARCs`
+- CLI tool: `arc-raiders` command-line interface
+- Data export functions: `exportToJSON`, `exportToCSV`, `exportToJSONString`, `exportToCSVString`
+- Analytics & statistics: `getWeaponStats`, `getArmorStats`, `getRarityDistribution`, `findBestWeapon`, `findBestArmor`
+- `clearCache()` method for manual cache management
+
+### Changed
+- Improved client configuration with `cacheEnabled` and `cacheTTL` options
+- Enhanced README with examples for all new features
+
 ## [1.0.1] - 2025-11-03
 
 ### Fixed
@@ -24,7 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive TypeScript types
 - Error handling with custom error types
 
-[Unreleased]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/justinjd00/arc-raiders-wrapper/releases/tag/v1.0.0
 
