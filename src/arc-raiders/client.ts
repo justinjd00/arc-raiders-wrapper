@@ -24,7 +24,7 @@ export interface ArcRaidersClientConfig {
 export class ArcRaidersClient {
   private readonly client: ApiClient;
   private readonly cache: Cache;
-  private readonly baseURL = 'https://metaforge.app/api/arc-raiders';
+  protected readonly baseURL = 'https://metaforge.app/api/arc-raiders';
   private readonly defaultTimeout = 10000;
   private readonly cacheEnabled: boolean;
 
@@ -41,8 +41,8 @@ export class ArcRaidersClient {
     this.cache = new Cache(config?.cacheTTL || 5 * 60 * 1000);
   }
 
-  private getCacheKey(endpoint: string, params?: Record<string, string | number>): string {
-    const paramString = params ? JSON.stringify(params) : '';
+  private getCacheKey(endpoint: string, params?: ArcRaidersFilter | Record<string, any>): string {
+    const paramString = params ? JSON.stringify(params, Object.keys(params).sort()) : '';
     return `${endpoint}:${paramString}`;
   }
 
@@ -50,13 +50,27 @@ export class ArcRaidersClient {
     this.cache.clear();
   }
 
-  private buildQueryParams(filter?: ArcRaidersFilter): Record<string, string | number> {
+  protected buildQueryParams(filter?: ArcRaidersFilter): Record<string, string | number> {
     const params: Record<string, string | number> = {};
 
     if (filter?.rarity) {
-      params.rarity = Array.isArray(filter.rarity) 
-        ? filter.rarity.join(',') 
-        : filter.rarity;
+      const normalizeRarity = (rarity: string): string => {
+        const lower = rarity.toLowerCase();
+        const rarityMap: Record<string, string> = {
+          'common': 'Common',
+          'uncommon': 'Uncommon',
+          'rare': 'Rare',
+          'epic': 'Epic',
+          'legendary': 'Legendary'
+        };
+        return rarityMap[lower] || rarity;
+      };
+
+      if (Array.isArray(filter.rarity)) {
+        params.rarity = filter.rarity.map(normalizeRarity).join(',');
+      } else {
+        params.rarity = normalizeRarity(filter.rarity);
+      }
     }
 
     if (filter?.type) {
@@ -86,27 +100,37 @@ export class ArcRaidersClient {
     return params;
   }
 
-  async getItems(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<ArcRaidersItem[]>> {
-    const params = this.buildQueryParams(filter);
-    const cacheKey = this.getCacheKey('/items', params);
+  async getItems(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<ArcRaidersItem[]> {
+    const cacheKey = this.getCacheKey('/items', filter);
     
     if (this.cacheEnabled) {
-      const cached = this.cache.get<ArcRaidersApiResponse<ArcRaidersItem[]>>(cacheKey);
+      const cached = this.cache.get<ArcRaidersItem[]>(cacheKey);
       if (cached) {
         return cached;
       }
     }
 
-    const response = await this.client.get<ArcRaidersApiResponse<ArcRaidersItem[]>>(
-      '/items',
-      { params }
-    );
+    const allItems: ArcRaidersItem[] = [];
+    let page = 1;
+    let hasMore = true;
 
-    if (this.cacheEnabled) {
-      this.cache.set(cacheKey, response.data);
+    while (hasMore) {
+      const params = this.buildQueryParams({ ...filter, page, pageSize: 50 });
+      const response = await this.client.get<ArcRaidersApiResponse<ArcRaidersItem[]>>(
+        '/items',
+        { params }
+      );
+      
+      allItems.push(...response.data.data);
+      hasMore = response.data.pagination?.hasNextPage || false;
+      page++;
     }
 
-    return response.data;
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, allItems);
+    }
+
+    return allItems;
   }
 
   async getItemById(id: string): Promise<ArcRaidersItem> {
@@ -128,28 +152,38 @@ export class ArcRaidersClient {
     return response.data;
   }
 
-  async getWeapons(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<Weapon[]>> {
+  async getWeapons(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<Weapon[]> {
     const filterWithType = { ...filter, type: 'weapon' as const };
-    const params = this.buildQueryParams(filterWithType);
-    const cacheKey = this.getCacheKey('/items', { ...params, type: 'weapon' });
+    const cacheKey = this.getCacheKey('/items', { ...filterWithType, type: 'weapon' });
     
     if (this.cacheEnabled) {
-      const cached = this.cache.get<ArcRaidersApiResponse<Weapon[]>>(cacheKey);
+      const cached = this.cache.get<Weapon[]>(cacheKey);
       if (cached) {
         return cached;
       }
     }
 
-    const response = await this.client.get<ArcRaidersApiResponse<Weapon[]>>(
-      '/items',
-      { params }
-    );
+    const allWeapons: Weapon[] = [];
+    let page = 1;
+    let hasMore = true;
 
-    if (this.cacheEnabled) {
-      this.cache.set(cacheKey, response.data);
+    while (hasMore) {
+      const params = this.buildQueryParams({ ...filterWithType, page, pageSize: 50 });
+      const response = await this.client.get<ArcRaidersApiResponse<Weapon[]>>(
+        '/items',
+        { params }
+      );
+      
+      allWeapons.push(...response.data.data);
+      hasMore = response.data.pagination?.hasNextPage || false;
+      page++;
     }
 
-    return response.data;
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, allWeapons);
+    }
+
+    return allWeapons;
   }
 
   async getWeaponById(id: string): Promise<Weapon> {
@@ -157,13 +191,38 @@ export class ArcRaidersClient {
     return item as Weapon;
   }
 
-  async getArmor(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<Armor[]>> {
+  async getArmor(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<Armor[]> {
     const filterWithType = { ...filter, type: 'armor' as const };
-    const response = await this.client.get<ArcRaidersApiResponse<Armor[]>>(
-      '/items',
-      { params: this.buildQueryParams(filterWithType) }
-    );
-    return response.data;
+    const cacheKey = this.getCacheKey('/items', { ...filterWithType, type: 'armor' });
+    
+    if (this.cacheEnabled) {
+      const cached = this.cache.get<Armor[]>(cacheKey);
+      if (cached) {
+        return cached;
+      }
+    }
+
+    const allArmor: Armor[] = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore) {
+      const params = this.buildQueryParams({ ...filterWithType, page, pageSize: 50 });
+      const response = await this.client.get<ArcRaidersApiResponse<Armor[]>>(
+        '/items',
+        { params }
+      );
+      
+      allArmor.push(...response.data.data);
+      hasMore = response.data.pagination?.hasNextPage || false;
+      page++;
+    }
+
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, allArmor);
+    }
+
+    return allArmor;
   }
 
   async getArmorById(id: string): Promise<Armor> {
@@ -171,27 +230,37 @@ export class ArcRaidersClient {
     return item as Armor;
   }
 
-  async getQuests(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<Quest[]>> {
-    const params = this.buildQueryParams(filter);
-    const cacheKey = this.getCacheKey('/quests', params);
+  async getQuests(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<Quest[]> {
+    const cacheKey = this.getCacheKey('/quests', filter);
     
     if (this.cacheEnabled) {
-      const cached = this.cache.get<ArcRaidersApiResponse<Quest[]>>(cacheKey);
+      const cached = this.cache.get<Quest[]>(cacheKey);
       if (cached) {
         return cached;
       }
     }
 
-    const response = await this.client.get<ArcRaidersApiResponse<Quest[]>>(
-      '/quests',
-      { params }
-    );
+    const allQuests: Quest[] = [];
+    let page = 1;
+    let hasMore = true;
 
-    if (this.cacheEnabled) {
-      this.cache.set(cacheKey, response.data);
+    while (hasMore) {
+      const params = this.buildQueryParams({ ...filter, page, pageSize: 50 });
+      const response = await this.client.get<ArcRaidersApiResponse<Quest[]>>(
+        '/quests',
+        { params }
+      );
+      
+      allQuests.push(...response.data.data);
+      hasMore = response.data.pagination?.hasNextPage || false;
+      page++;
     }
 
-    return response.data;
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, allQuests);
+    }
+
+    return allQuests;
   }
 
   async getQuestById(id: string): Promise<Quest> {
@@ -199,27 +268,37 @@ export class ArcRaidersClient {
     return response.data;
   }
 
-  async getARCs(filter?: ArcRaidersFilter): Promise<ArcRaidersApiResponse<ArcMission[]>> {
-    const params = this.buildQueryParams(filter);
-    const cacheKey = this.getCacheKey('/arcs', params);
+  async getARCs(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<ArcMission[]> {
+    const cacheKey = this.getCacheKey('/arcs', filter);
     
     if (this.cacheEnabled) {
-      const cached = this.cache.get<ArcRaidersApiResponse<ArcMission[]>>(cacheKey);
+      const cached = this.cache.get<ArcMission[]>(cacheKey);
       if (cached) {
         return cached;
       }
     }
 
-    const response = await this.client.get<ArcRaidersApiResponse<ArcMission[]>>(
-      '/arcs',
-      { params }
-    );
+    const allARCs: ArcMission[] = [];
+    let page = 1;
+    let hasMore = true;
 
-    if (this.cacheEnabled) {
-      this.cache.set(cacheKey, response.data);
+    while (hasMore) {
+      const params = this.buildQueryParams({ ...filter, page, pageSize: 50 });
+      const response = await this.client.get<ArcRaidersApiResponse<ArcMission[]>>(
+        '/arcs',
+        { params }
+      );
+      
+      allARCs.push(...response.data.data);
+      hasMore = response.data.pagination?.hasNextPage || false;
+      page++;
     }
 
-    return response.data;
+    if (this.cacheEnabled) {
+      this.cache.set(cacheKey, allARCs);
+    }
+
+    return allARCs;
   }
 
   async getARCById(id: string): Promise<ArcMission> {
@@ -276,7 +355,7 @@ export class ArcRaidersClient {
     return response.data;
   }
 
-  async search(query: string, filter?: ArcRaidersFilter): Promise<{
+  async search(query: string, filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<{
     items?: ArcRaidersItem[];
     quests?: Quest[];
     arcs?: ArcMission[];
@@ -286,83 +365,28 @@ export class ArcRaidersClient {
     const items = await this.getItems(searchFilter);
     
     return {
-      items: items.data,
+      items,
     };
   }
 
   async getAllItems(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<ArcRaidersItem[]> {
-    const allItems: ArcRaidersItem[] = [];
-    let page = 1;
-    let hasMore = true;
-
-    while (hasMore) {
-      const response = await this.getItems({ ...filter, page, pageSize: 50 });
-      allItems.push(...response.data);
-      hasMore = response.pagination?.hasNextPage || false;
-      page++;
-    }
-
-    return allItems;
+    return this.getItems(filter);
   }
 
   async getAllWeapons(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<Weapon[]> {
-    const allWeapons: Weapon[] = [];
-    let page = 1;
-    let hasMore = true;
-
-    while (hasMore) {
-      const response = await this.getWeapons({ ...filter, page, pageSize: 50 });
-      allWeapons.push(...response.data);
-      hasMore = response.pagination?.hasNextPage || false;
-      page++;
-    }
-
-    return allWeapons;
+    return this.getWeapons(filter);
   }
 
   async getAllArmor(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<Armor[]> {
-    const allArmor: Armor[] = [];
-    let page = 1;
-    let hasMore = true;
-
-    while (hasMore) {
-      const response = await this.getArmor({ ...filter, page, pageSize: 50 });
-      allArmor.push(...response.data);
-      hasMore = response.pagination?.hasNextPage || false;
-      page++;
-    }
-
-    return allArmor;
+    return this.getArmor(filter);
   }
 
   async getAllQuests(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<Quest[]> {
-    const allQuests: Quest[] = [];
-    let page = 1;
-    let hasMore = true;
-
-    while (hasMore) {
-      const response = await this.getQuests({ ...filter, page, pageSize: 50 });
-      allQuests.push(...response.data);
-      hasMore = response.pagination?.hasNextPage || false;
-      page++;
-    }
-
-    return allQuests;
+    return this.getQuests(filter);
   }
 
   async getAllARCs(filter?: Omit<ArcRaidersFilter, 'page' | 'pageSize'>): Promise<ArcMission[]> {
-    const allARCs: ArcMission[] = [];
-    let page = 1;
-    let hasMore = true;
-
-    while (hasMore) {
-      const response = await this.getARCs({ ...filter, page, pageSize: 50 });
-      allARCs.push(...response.data);
-      hasMore = response.pagination?.hasNextPage || false;
-      page++;
-    }
-
-    return allARCs;
+    return this.getARCs(filter);
   }
 }
 

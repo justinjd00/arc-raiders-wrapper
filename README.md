@@ -102,6 +102,34 @@ npx arc-raiders export json --output data.json
 npx arc-raiders stats
 ```
 
+### Browser Client (Bypass Cloudflare)
+
+If the API returns 403 Forbidden due to Cloudflare bot protection, you can use the browser-based client:
+
+```typescript
+import { createBrowserClient } from '@justinjd00/arc-raiders-api';
+
+const client = createBrowserClient({
+  headless: true,
+  browser: 'chromium',
+});
+
+await client.init();
+
+const items = await client.getItems({ page: 1, pageSize: 10 });
+console.log(items.data);
+
+await client.close();
+```
+
+**Installation**:
+```bash
+npm install playwright
+npx playwright install chromium
+```
+
+**Note**: The browser client uses Playwright to launch a real browser, which can bypass Cloudflare protection. It's slower than the regular client but more reliable when bot protection is active.
+
 ## Links
 
 - [GitHub Repository](https://github.com/justinjd00/arc-raiders-wrapper)

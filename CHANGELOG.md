@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2025-01-XX
+
+### Added
+- Browser-based client (`BrowserArcRaidersClient`) to bypass Cloudflare bot protection
+- `createBrowserClient()` function for easy browser client initialization
+- Playwright integration for headless browser automation
+- Browser client example in `examples/browser-client.ts`
+- Updated README with browser client usage instructions
+
+### Changed
+- Improved rarity filtering with automatic normalization (e.g., "epic" → "Epic")
+- Enhanced error handling for Cloudflare 403 responses
+
 ## [1.1.0] - 2025-01-03
 
 ### Added

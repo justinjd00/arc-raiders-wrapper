@@ -7,7 +7,7 @@ export interface ArcRaidersItem {
   icon?: string;
 }
 
-export type ItemRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
+export type ItemRarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'Common' | 'Uncommon' | 'Rare' | 'Epic' | 'Legendary';
 
 export type ItemType = 'weapon' | 'armor' | 'consumable' | 'material' | 'quest_item' | 'other';
 

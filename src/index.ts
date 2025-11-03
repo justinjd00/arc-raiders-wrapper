@@ -62,3 +62,6 @@ export {
 } from './analytics/stats';
 
 export type { Stats } from './analytics/stats';
+
+export { BrowserArcRaidersClient, createBrowserClient } from './arc-raiders/browser-client';
+export type { BrowserClientConfig } from './arc-raiders/browser-client';

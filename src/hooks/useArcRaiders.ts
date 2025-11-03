@@ -40,7 +40,7 @@ export function useItems(filter?: ArcRaidersFilter, options: UseArcRaidersOption
     setLoading(true);
     setError(null);
     try {
-      const response = await client.getAllItems(filter);
+      const response = await client.getItems(filter);
       setItems(response);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Unknown error'));
@@ -73,7 +73,7 @@ export function useWeapons(filter?: ArcRaidersFilter, options: UseArcRaidersOpti
     setLoading(true);
     setError(null);
     try {
-      const response = await client.getAllWeapons(filter);
+      const response = await client.getWeapons(filter);
       setWeapons(response);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Unknown error'));
@@ -106,7 +106,7 @@ export function useQuests(filter?: ArcRaidersFilter, options: UseArcRaidersOptio
     setLoading(true);
     setError(null);
     try {
-      const response = await client.getAllQuests(filter);
+      const response = await client.getQuests(filter);
       setQuests(response);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Unknown error'));
@@ -139,7 +139,7 @@ export function useARCs(filter?: ArcRaidersFilter, options: UseArcRaidersOptions
     setLoading(true);
     setError(null);
     try {
-      const response = await client.getAllARCs(filter);
+      const response = await client.getARCs(filter);
       setArcs(response);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Unknown error'));

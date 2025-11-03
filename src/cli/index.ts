@@ -40,7 +40,7 @@ Examples:
   try {
     switch (command) {
       case 'items': {
-        const items = await client.getAllItems();
+        const items = await client.getItems();
         console.log(JSON.stringify(items, null, 2));
         break;
       }
@@ -48,19 +48,19 @@ Examples:
       case 'weapons': {
         const rarityIndex = args.indexOf('--rarity');
         const rarity = rarityIndex !== -1 ? args[rarityIndex + 1] : undefined;
-        const weapons = await client.getAllWeapons(rarity ? { rarity: rarity as any } : undefined);
+        const weapons = await client.getWeapons(rarity ? { rarity: rarity as any } : undefined);
         console.log(JSON.stringify(weapons, null, 2));
         break;
       }
 
       case 'quests': {
-        const quests = await client.getAllQuests();
+        const quests = await client.getQuests();
         console.log(JSON.stringify(quests, null, 2));
         break;
       }
 
       case 'arcs': {
-        const arcs = await client.getAllARCs();
+        const arcs = await client.getARCs();
         console.log(JSON.stringify(arcs, null, 2));
         break;
       }
@@ -81,7 +81,7 @@ Examples:
           process.exit(1);
         }
 
-        const items = await client.getAllItems();
+        const items = await client.getItems();
         
         if (type === 'json') {
           if (output) {
@@ -102,8 +102,8 @@ Examples:
       }
 
       case 'stats': {
-        const weapons = await client.getAllWeapons();
-        const items = await client.getAllItems();
+        const weapons = await client.getWeapons();
+        const items = await client.getItems();
         
         const weaponStats = getWeaponStats(weapons);
         const rarityDist = getRarityDistribution(items);
