@@ -2,13 +2,13 @@
 
 <div align="center">
 
-![GitHub stars](https://img.shields.io/github/stars/justinjd00/arc-raiders-wrapper?style=social&cacheSeconds=3600)
-![GitHub forks](https://img.shields.io/github/forks/justinjd00/arc-raiders-wrapper?style=social&cacheSeconds=3600)
-![GitHub watchers](https://img.shields.io/github/watchers/justinjd00/arc-raiders-wrapper?style=social&cacheSeconds=3600)
-![GitHub issues](https://img.shields.io/github/issues/justinjd00/arc-raiders-wrapper?cacheSeconds=3600)
-![GitHub license](https://img.shields.io/github/license/justinjd00/arc-raiders-wrapper?cacheSeconds=3600)
-![npm version](https://img.shields.io/npm/v/@justinjd00/arc-raiders-api?cacheSeconds=3600)
-![npm downloads](https://img.shields.io/npm/dm/@justinjd00/arc-raiders-api?cacheSeconds=3600)
+![GitHub stars](https://img.shields.io/github/stars/justinjd00/arc-raiders-wrapper?style=social)
+![GitHub forks](https://img.shields.io/github/forks/justinjd00/arc-raiders-wrapper?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/justinjd00/arc-raiders-wrapper?style=social)
+![GitHub issues](https://img.shields.io/github/issues/justinjd00/arc-raiders-wrapper)
+![GitHub license](https://img.shields.io/github/license/justinjd00/arc-raiders-wrapper)
+![npm version](https://img.shields.io/npm/v/@justinjd00/arc-raiders-api)
+![npm downloads](https://img.shields.io/npm/dm/@justinjd00/arc-raiders-api)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 
 
