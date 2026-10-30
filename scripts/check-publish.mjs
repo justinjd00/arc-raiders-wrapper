@@ -1,7 +1,7 @@
 // Runs `npm publish --dry-run` and fails when npm would silently change the
 // package on publish (e.g. drop a `bin` entry). publint and `npm pack` do not
-// catch these, only the real publish path does. This shipped 2.0.0 without
-// its CLI, so CI now checks it on every push.
+// catch these, only the real publish path does. The 2.0.0 publish flagged the
+// `bin` path this way, so CI now checks it on every push.
 import { spawnSync } from 'node:child_process';
 
 const result = spawnSync('npm', ['publish', '--dry-run', '--access', 'public'], {

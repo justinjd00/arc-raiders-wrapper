@@ -8,7 +8,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Fixed
 
-- The `arc-raiders` CLI was missing from the 2.0.0 package. npm 12 drops `bin` paths written as `./dist/cli.js` during publish, the path is now `dist/cli.js`.
+- `bin` path written as `dist/cli.js` instead of `./dist/cli.js`. npm 12 flagged the old form as invalid on publish ("auto-corrected some errors"). The 2.0.0 package still shipped a working CLI, this removes the warning before a future npm turns it into a real removal.
 
 ### Added
 
