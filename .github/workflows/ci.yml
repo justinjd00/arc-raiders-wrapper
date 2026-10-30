@@ -35,6 +35,11 @@ jobs:
       - name: Package checks (publint, are-the-types-wrong)
         if: matrix.node == 24
         run: npm run check:package
+      - name: Publish dry run with the latest npm
+        if: matrix.node == 24
+        run: |
+          npm install -g npm@latest
+          npm run check:publish
 
   runtime:
     # The library itself supports Node 20+, only the dev tooling needs 22+.

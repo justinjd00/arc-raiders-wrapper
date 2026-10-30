@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [2.0.1] - 2026-10-30
+
+### Fixed
+
+- The `arc-raiders` CLI was missing from the 2.0.0 package. npm 12 drops `bin` paths written as `./dist/cli.js` during publish, the path is now `dist/cli.js`.
+
+### Added
+
+- CI runs `npm publish --dry-run` with the latest npm and fails if npm would change the package on publish.
+
 ## [2.0.0] - 2026-10-30
 
 A rewrite against the current MetaForge API. Most v1 endpoints no longer exist upstream, so v1 calls were failing. The v1 methods are kept as deprecated aliases on top of the new client, see the migration table in the README.
@@ -78,7 +88,8 @@ A rewrite against the current MetaForge API. Most v1 endpoints no longer exist u
 
 - Initial release.
 
-[Unreleased]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v1.1.1...v2.0.0
 [1.1.1]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/justinjd00/arc-raiders-wrapper/compare/v1.0.1...v1.1.0

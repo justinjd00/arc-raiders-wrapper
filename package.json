@@ -1,6 +1,6 @@
 {
   "name": "@justinjd00/arc-raiders-api",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Zero-dependency, type-safe TypeScript client for the MetaForge ARC Raiders API. Items, weapons, quests, ARCs, traders, Ermal, live events and map markers, plus quest chains, item usage, fuzzy search, React hooks and a CLI.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -40,7 +40,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "arc-raiders": "./dist/cli.js"
+    "arc-raiders": "dist/cli.js"
   },
   "files": [
     "dist",
@@ -63,7 +63,8 @@
     "test:watch": "vitest",
     "test:contract": "CONTRACT=1 vitest run",
     "check:package": "publint && attw --pack . --profile node16",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "check:publish": "node scripts/check-publish.mjs"
   },
   "repository": {
     "type": "git",
