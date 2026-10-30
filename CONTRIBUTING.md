@@ -42,6 +42,14 @@ The weekly `API contract` workflow opens an issue labeled `api-drift` when the l
 npm run test:contract
 ```
 
+## Releasing
+
+1. Bump `version` in `package.json` and `VERSION` in `src/version.ts` (a test keeps them in sync).
+2. Add a `## [x.y.z] - YYYY-MM-DD` section to `CHANGELOG.md`.
+3. Merge to `main`, then tag: `git tag -a vX.Y.Z -m vX.Y.Z && git push origin vX.Y.Z`.
+
+The `Release` workflow verifies the tag against `package.json`, then creates the GitHub release from the changelog and publishes to npm and GitHub Packages in separate jobs. npm uses [trusted publishing](https://docs.npmjs.com/trusted-publishers) (no token needed once `justinjd00/arc-raiders-wrapper` with workflow `release.yml` is registered as trusted publisher on npmjs.com). An `NPM_TOKEN` secret works as a fallback. If the npm job fails, fix the setup and re-run only that job.
+
 ## Commit messages
 
 Conventional commits, e.g. `feat: add trader filter`, `fix: handle empty event schedule`, `docs: ...`.

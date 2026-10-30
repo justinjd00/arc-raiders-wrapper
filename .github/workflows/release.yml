@@ -1,51 +1,46 @@
 name: Release
 
+# Push a tag like v2.0.0 to release. The jobs are independent on purpose:
+# if npm publishing fails (e.g. auth not set up yet), the GitHub release and
+# GitHub Packages still go out, and the npm job can be re-run on its own.
+
 on:
   push:
     tags:
       - 'v*'
 
 permissions:
-  contents: write
-  id-token: write # npm provenance
-  packages: write
+  contents: read
 
 jobs:
-  publish:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
-          registry-url: https://registry.npmjs.org
-
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-
-      - name: Check tag matches package.json
+      - name: Tag matches package.json
         run: |
           PKG="v$(node -p "require('./package.json').version")"
           if [ "$PKG" != "${GITHUB_REF_NAME}" ]; then
-            echo "Tag ${GITHUB_REF_NAME} does not match package.json ${PKG}" && exit 1
+            echo "::error::Tag ${GITHUB_REF_NAME} does not match package.json ${PKG}"
+            exit 1
           fi
+      - run: npm ci
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run check:package
 
-      - name: Publish to npm (with provenance)
-        run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish to GitHub Packages
-        run: |
-          echo "@justinjd00:registry=https://npm.pkg.github.com" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+  github-release:
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
       - name: Release notes from CHANGELOG
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
@@ -54,8 +49,58 @@ jobs:
             found && /^## \[/ {exit}
             found {print}
           ' CHANGELOG.md > RELEASE_NOTES.md
-
+          test -s RELEASE_NOTES.md || { echo "::error::No CHANGELOG entry for ${VERSION}"; exit 1; }
       - uses: softprops/action-gh-release@v3
         with:
           name: ${{ github.ref_name }}
           body_path: RELEASE_NOTES.md
+          make_latest: true
+
+  npm:
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing (OIDC) and provenance
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      # Trusted publishing needs npm 11.5.1 or newer.
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm run build
+      - name: Publish to npm
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@justinjd00/arc-raiders-api@${VERSION}" version >/dev/null 2>&1; then
+            echo "Version ${VERSION} is already on npm, skipping."
+            exit 0
+          fi
+          npm publish --access public --provenance
+        env:
+          # Empty when the secret is not set, then npm uses trusted publishing.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  github-packages:
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: '@justinjd00'
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
