@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="605" viewBox="0 0 840 605" role="img" aria-labelledby="t" xml:space="preserve" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, DejaVu Sans Mono, monospace">
+  <title id="t">arc-raiders CLI: fuzzy search, keep-or-recycle check and quest chain, run against the live API</title>
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace; font-size: 14px; white-space: pre; fill: #c9d1e6; }
+    .p { fill: #ff7a3d; font-weight: 700; } .c { fill: #f5f7ff; font-weight: 600; }
+    .h { fill: #6cb6ff; } .k { fill: #2ee6d6; font-weight: 700; }
+    .l1 { fill: #ffd166; } .l2 { fill: #c4a7ff; } .l3 { fill: #ff6b6b; } .l4 { fill: #6cb6ff; }
+    .t { fill: #8b93ad; font-size: 13px; }
+    .blk { opacity: 0; animation: in .5s ease-out forwards; }
+    .cur { animation: blink 1.1s steps(1) infinite; }
+    @keyframes in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .blk { opacity: 1; animation: none; } .cur { animation: none; } }
+  </style>
+  <rect width="840" height="605" rx="14" fill="#0b0f1c"/>
+  <rect x=".5" y=".5" width="839" height="604" rx="14" fill="none" stroke="#ffffff" stroke-opacity=".1"/>
+  <path d="M0 14a14 14 0 0 1 14-14h812a14 14 0 0 1 14 14v22H0z" fill="#141a2c"/>
+  <circle cx="24" cy="18" r="6" fill="#ff5f57"/><circle cx="44" cy="18" r="6" fill="#febc2e"/><circle cx="64" cy="18" r="6" fill="#28c840"/>
+  <text x="420.0" y="23" text-anchor="middle" class="t">arc-raiders · live data from metaforge.app</text>
+  <g>
+        <g class="blk" style="animation-delay:0.3s">
+    <text x="26" y="64"><tspan class="p">$</tspan> <tspan class="c">arc-raiders search "ferro 2" --limit 3</tspan></text>
+    <text x="26" y="89" class="h">type  id         name       score</text>
+    <text x="26" y="110" class="o">item  ferro-ii   Ferro II   1.2</text>
+    <text x="26" y="131" class="o">item  ferro-iii  Ferro III  1.05</text>
+    <text x="26" y="152" class="o">item  anvil-ii   Anvil II   0.5</text>
+    </g>
+    <g class="blk" style="animation-delay:1.9s">
+    <text x="26" y="187"><tspan class="p">$</tspan> <tspan class="c">arc-raiders usage matriarch-reactor</tspan></text>
+    <text x="26" y="212" class="k">KEEP matriarch-reactor</text>
+    <text x="26" y="233" class="o">  <tspan class="l1">ermal</tspan>   2.3 Backpack Attachment: Cauldron takes 1</text>
+    <text x="26" y="254" class="o">  <tspan class="l1">ermal</tspan>   Hullcracker II takes 1</text>
+    <text x="26" y="275" class="o">  <tspan class="l1">ermal</tspan>   Occult Backpack takes 1</text>
+    <text x="26" y="296" class="o">  <tspan class="l1">ermal</tspan>   Raider Tokens x25 takes 1</text>
+    <text x="26" y="317" class="o">  <tspan class="l1">ermal</tspan>   Wolfpack takes 1</text>
+    <text x="26" y="338" class="o">  <tspan class="l1">ermal</tspan>   Expedition Vault (service)</text>
+    <text x="26" y="359" class="o">  <tspan class="l1">ermal</tspan>   Stash Expansion (service)</text>
+    <text x="26" y="380" class="o">  <tspan class="l2">reward</tspan>  from Nothing Gained (1)</text>
+    <text x="26" y="401" class="o">  <tspan class="l3">drop</tspan>    Matriarch</text>
+    </g>
+    <g class="blk" style="animation-delay:3.5s">
+    <text x="26" y="436"><tspan class="p">$</tspan> <tspan class="c">arc-raiders quest a-bad-feeling --chain</tspan></text>
+    <text x="26" y="461" class="h">step  id                     name                   trader</text>
+    <text x="26" y="482" class="o">1     picking-up-the-pieces  Picking Up The Pieces  Shani</text>
+    <text x="26" y="503" class="o">2     clearer-skies          Clearer Skies          Shani</text>
+    <text x="26" y="524" class="o">3     trash-into-treasure    Trash Into Treasure    Shani</text>
+    <text x="26" y="545" class="o">4     off-the-raider         Off The Radar          Shani</text>
+    <text x="26" y="566" class="o">5     a-bad-feeling          A Bad Feeling          Celeste</text>
+    </g>
+  </g>
+</svg>

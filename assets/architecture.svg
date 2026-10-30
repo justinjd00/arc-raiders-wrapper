@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif">
+  <title id="title">How arc-raiders-api works</title>
+  <desc id="desc">Your app calls typed resources and helpers. Requests pass through cache, de-duplication, retries and a transport (fetch or Playwright) to the MetaForge API.</desc>
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace; }
+    .flow { stroke-dasharray: 6 8; animation: dash 1.6s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -28; } }
+    @media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#090c16"/>
+      <stop offset="1" stop-color="#141a2e"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity=".04"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#ff7a3d"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="430" rx="18" fill="url(#bg)"/>
+  <rect width="1200" height="430" rx="18" fill="url(#grid)"/>
+
+  <!-- column labels -->
+  <g class="mono" font-size="12" letter-spacing="2.5" fill="#8b93ad">
+    <text x="40" y="44">YOUR CODE</text>
+    <text x="300" y="44">ARC-RAIDERS-API</text>
+    <text x="960" y="44">UPSTREAM</text>
+  </g>
+
+  <!-- consumers -->
+  <g font-size="16" fill="#f5f7ff">
+    <g transform="translate(40 66)">
+      <rect width="200" height="64" fill="#fff" fill-opacity=".05" stroke="#2ee6d6" stroke-opacity=".6"/>
+      <text x="18" y="28" font-weight="700">Node / Browser</text>
+      <text x="18" y="48" class="mono" font-size="12" fill="#9aa4bf">import { … } from '…'</text>
+    </g>
+    <g transform="translate(40 146)">
+      <rect width="200" height="64" fill="#fff" fill-opacity=".05" stroke="#ffd166" stroke-opacity=".6"/>
+      <text x="18" y="28" font-weight="700">React</text>
+      <text x="18" y="48" class="mono" font-size="12" fill="#9aa4bf">useItems(), useEvents()</text>
+    </g>
+    <g transform="translate(40 226)">
+      <rect width="200" height="64" fill="#fff" fill-opacity=".05" stroke="#ff7a3d" stroke-opacity=".6"/>
+      <text x="18" y="28" font-weight="700">Terminal</text>
+      <text x="18" y="48" class="mono" font-size="12" fill="#9aa4bf">npx arc-raiders usage …</text>
+    </g>
+    <g transform="translate(40 306)">
+      <rect width="200" height="64" fill="#fff" fill-opacity=".05" stroke="#9b8cff" stroke-opacity=".6"/>
+      <text x="18" y="28" font-weight="700">Your own fetch</text>
+      <text x="18" y="48" class="mono" font-size="12" fill="#9aa4bf">proxies, tests, edge</text>
+    </g>
+  </g>
+
+  <!-- arrows into the SDK -->
+  <g stroke="#ff7a3d" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path class="flow" d="M240 98 C270 98 270 200 296 200"/>
+    <path class="flow" d="M240 178 C268 178 268 206 296 206"/>
+    <path class="flow" d="M240 258 C268 258 268 212 296 212"/>
+    <path class="flow" d="M240 338 C270 338 270 218 296 218"/>
+  </g>
+
+  <!-- SDK -->
+  <g transform="translate(300 62)">
+    <rect width="600" height="312" fill="#fff" fill-opacity=".035" stroke="#fff" stroke-opacity=".14"/>
+
+    <text x="22" y="34" font-size="13" class="mono" letter-spacing="1.5" fill="#ff7a3d">RESOURCES</text>
+    <g class="mono" font-size="14" fill="#f5f7ff">
+      <g transform="translate(22 46)">
+        <rect width="80" height="30" fill="#ff7a3d" fill-opacity=".12"/><text x="40" y="20" text-anchor="middle">items</text>
+        <rect x="88" width="92" height="30" fill="#ff7a3d" fill-opacity=".12"/><text x="134" y="20" text-anchor="middle">weapons</text>
+        <rect x="188" width="84" height="30" fill="#ff7a3d" fill-opacity=".12"/><text x="230" y="20" text-anchor="middle">quests</text>
+        <rect x="280" width="64" height="30" fill="#ff7a3d" fill-opacity=".12"/><text x="312" y="20" text-anchor="middle">arcs</text>
+        <rect x="352" width="88" height="30" fill="#ff7a3d" fill-opacity=".12"/><text x="396" y="20" text-anchor="middle">traders</text>
+        <rect x="448" width="76" height="30" fill="#ff7a3d" fill-opacity=".12"/><text x="486" y="20" text-anchor="middle">events</text>
+      </g>
+      <g transform="translate(22 82)">
+        <rect width="64" height="30" fill="#ff7a3d" fill-opacity=".12"/><text x="32" y="20" text-anchor="middle">maps</text>
+      </g>
+    </g>
+
+    <text x="22" y="146" font-size="13" class="mono" letter-spacing="1.5" fill="#ffd166">GAME LOGIC</text>
+    <g font-size="14" fill="#f5f7ff">
+      <g transform="translate(22 158)">
+        <rect width="132" height="30" fill="#ffd166" fill-opacity=".12"/><text x="66" y="20" text-anchor="middle">quest chains</text>
+        <rect x="140" width="150" height="30" fill="#ffd166" fill-opacity=".12"/><text x="215" y="20" text-anchor="middle">keep or recycle?</text>
+        <rect x="298" width="118" height="30" fill="#ffd166" fill-opacity=".12"/><text x="357" y="20" text-anchor="middle">fuzzy search</text>
+        <rect x="424" width="132" height="30" fill="#ffd166" fill-opacity=".12"/><text x="490" y="20" text-anchor="middle">live events</text>
+      </g>
+    </g>
+
+    <text x="22" y="226" font-size="13" class="mono" letter-spacing="1.5" fill="#2ee6d6">PIPELINE</text>
+    <g font-size="14" fill="#f5f7ff">
+      <g transform="translate(22 238)">
+        <rect width="116" height="50" fill="#2ee6d6" fill-opacity=".1" stroke="#2ee6d6" stroke-opacity=".35"/>
+        <text x="58" y="22" text-anchor="middle" font-weight="700">cache</text>
+        <text x="58" y="40" text-anchor="middle" font-size="11" fill="#9aa4bf">LRU · SWR · stores</text>
+        <rect x="140" width="116" height="50" fill="#2ee6d6" fill-opacity=".1" stroke="#2ee6d6" stroke-opacity=".35"/>
+        <text x="198" y="22" text-anchor="middle" font-weight="700">dedupe</text>
+        <text x="198" y="40" text-anchor="middle" font-size="11" fill="#9aa4bf">pages + requests</text>
+        <rect x="280" width="116" height="50" fill="#2ee6d6" fill-opacity=".1" stroke="#2ee6d6" stroke-opacity=".35"/>
+        <text x="338" y="22" text-anchor="middle" font-weight="700">retry</text>
+        <text x="338" y="40" text-anchor="middle" font-size="11" fill="#9aa4bf">backoff · Retry-After</text>
+        <rect x="420" width="136" height="50" fill="#2ee6d6" fill-opacity=".1" stroke="#2ee6d6" stroke-opacity=".35"/>
+        <text x="488" y="22" text-anchor="middle" font-weight="700">transport</text>
+        <text x="488" y="40" text-anchor="middle" font-size="11" fill="#9aa4bf">fetch · Playwright</text>
+      </g>
+      <g stroke="#2ee6d6" stroke-width="2" marker-end="url(#arrow)">
+        <line x1="138" y1="263" x2="160" y2="263"/>
+        <line x1="278" y1="263" x2="300" y2="263"/>
+        <line x1="418" y1="263" x2="440" y2="263"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- arrow to MetaForge -->
+  <g stroke="#ff7a3d" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path class="flow" d="M878 325 C930 325 920 210 956 210"/>
+  </g>
+
+  <!-- MetaForge -->
+  <g transform="translate(960 62)">
+    <rect width="200" height="312" fill="#ff7a3d" fill-opacity=".07" stroke="#ff7a3d" stroke-opacity=".55"/>
+    <text x="18" y="34" font-size="18" font-weight="800" fill="#f5f7ff">MetaForge API</text>
+    <text x="18" y="54" class="mono" font-size="12" fill="#9aa4bf">metaforge.app/api</text>
+    <g class="mono" font-size="13" fill="#c9d1e6">
+      <text x="18" y="96">/items</text>
+      <text x="18" y="122">/arcs</text>
+      <text x="18" y="148">/quests</text>
+      <text x="18" y="174">/traders</text>
+      <text x="18" y="200">/events-schedule</text>
+      <text x="18" y="226">/game-map-data</text>
+    </g>
+    <text x="18" y="286" font-size="12" fill="#9aa4bf">Contract tested weekly</text>
+    <circle cx="176" cy="282" r="5" fill="#2ee6d6"/>
+  </g>
+</svg>

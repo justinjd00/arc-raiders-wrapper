@@ -1,12 +1,25 @@
-# ARC Raiders API
+<div align="center">
 
-[![npm version](https://img.shields.io/npm/v/@justinjd00/arc-raiders-api)](https://www.npmjs.com/package/@justinjd00/arc-raiders-api)
-[![npm downloads](https://img.shields.io/npm/dm/@justinjd00/arc-raiders-api)](https://www.npmjs.com/package/@justinjd00/arc-raiders-api)
-[![CI](https://github.com/justinjd00/arc-raiders-wrapper/actions/workflows/ci.yml/badge.svg)](https://github.com/justinjd00/arc-raiders-wrapper/actions/workflows/ci.yml)
-[![API contract](https://github.com/justinjd00/arc-raiders-wrapper/actions/workflows/contract.yml/badge.svg)](https://github.com/justinjd00/arc-raiders-wrapper/actions/workflows/contract.yml)
-![types](https://img.shields.io/npm/types/@justinjd00/arc-raiders-api)
-![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
-[![license](https://img.shields.io/github/license/justinjd00/arc-raiders-wrapper)](LICENSE)
+<a href="https://github.com/justinjd00/arc-raiders-wrapper"><img src="assets/banner.svg" alt="arc-raiders-api, a type-safe TypeScript SDK for the MetaForge ARC Raiders API" width="100%"></a>
+
+<p>
+<a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api"><img alt="npm version" src="https://img.shields.io/npm/v/@justinjd00/arc-raiders-api?style=flat-square&labelColor=0b0f1c&color=ff7a3d&label=npm"></a> <a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api"><img alt="downloads per month" src="https://img.shields.io/npm/dm/@justinjd00/arc-raiders-api?style=flat-square&labelColor=0b0f1c&color=ffd166"></a> <a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api"><img alt="total downloads" src="https://img.shields.io/npm/d18m/@justinjd00/arc-raiders-api?style=flat-square&labelColor=0b0f1c&color=ffd166&label=total+downloads"></a> <a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api"><img alt="unpacked size" src="https://img.shields.io/npm/unpacked-size/@justinjd00/arc-raiders-api?style=flat-square&labelColor=0b0f1c&color=2ee6d6&label=size"></a> <a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api"><img alt="node version" src="https://img.shields.io/node/v/@justinjd00/arc-raiders-api?style=flat-square&labelColor=0b0f1c&color=2ee6d6"></a>
+<br>
+<a href="https://github.com/justinjd00/arc-raiders-wrapper/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/justinjd00/arc-raiders-wrapper/ci.yml?style=flat-square&labelColor=0b0f1c&label=CI&branch=main"></a> <a href="https://github.com/justinjd00/arc-raiders-wrapper/actions/workflows/contract.yml"><img alt="API contract" src="https://img.shields.io/github/actions/workflow/status/justinjd00/arc-raiders-wrapper/contract.yml?style=flat-square&labelColor=0b0f1c&label=live+API+contract"></a> <a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api#provenance"><img alt="npm provenance" src="https://img.shields.io/badge/provenance-signed-9b8cff?style=flat-square&labelColor=0b0f1c"></a> <a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api"><img alt="TypeScript types" src="https://img.shields.io/npm/types/@justinjd00/arc-raiders-api?style=flat-square&labelColor=0b0f1c&color=3178c6"></a> <a href="https://www.npmjs.com/package/@justinjd00/arc-raiders-api?activeTab=dependencies"><img alt="zero dependencies" src="https://img.shields.io/badge/dependencies-0-2ee6d6?style=flat-square&labelColor=0b0f1c"></a> <a href="https://github.com/justinjd00/arc-raiders-wrapper/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/github/license/justinjd00/arc-raiders-wrapper?style=flat-square&labelColor=0b0f1c&color=e6e6e6"></a>
+<br>
+<a href="https://github.com/justinjd00/arc-raiders-wrapper/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/justinjd00/arc-raiders-wrapper?style=flat-square&labelColor=0b0f1c&color=ffd166&label=stars"></a> <a href="https://github.com/justinjd00/arc-raiders-wrapper/releases"><img alt="latest release" src="https://img.shields.io/github/v/release/justinjd00/arc-raiders-wrapper?style=flat-square&labelColor=0b0f1c&color=ff7a3d&label=release"></a> <a href="https://github.com/justinjd00/arc-raiders-wrapper/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/justinjd00/arc-raiders-wrapper?style=flat-square&labelColor=0b0f1c&color=c4a7ff"></a> <a href="https://github.com/justinjd00/arc-raiders-wrapper/issues"><img alt="open issues" src="https://img.shields.io/github/issues/justinjd00/arc-raiders-wrapper?style=flat-square&labelColor=0b0f1c&color=6cb6ff"></a>
+</p>
+
+<p>
+<a href="#quick-start"><b>Quick start</b></a> &nbsp;·&nbsp;
+<a href="#api"><b>API</b></a> &nbsp;·&nbsp;
+<a href="#react"><b>React</b></a> &nbsp;·&nbsp;
+<a href="#cli"><b>CLI</b></a> &nbsp;·&nbsp;
+<a href="#migrating-from-v1"><b>Migrating from v1</b></a> &nbsp;·&nbsp;
+<a href="CHANGELOG.md"><b>Changelog</b></a>
+</p>
+
+</div>
 
 Type-safe TypeScript client for the [MetaForge ARC Raiders API](https://metaforge.app/arc-raiders/api). Items, weapons, quests, ARCs, traders, Ermal, the live event schedule and map markers, plus the things you actually want to build on top of them: quest chains, "keep or recycle?" lookups, typo tolerant search, React hooks and a CLI.
 
@@ -22,17 +35,95 @@ await arc.itemUsage('matriarch-reactor'); // { keep: true, acceptedByErmal: [...
 await arc.search('ferro 2'); // finds "Ferro II"
 ```
 
+## Live from MetaForge
+
+These counters are pulled straight from the MetaForge API (refreshed hourly), the same data this package gives you.
+
+<p align="center">
+<a href="https://metaforge.app/arc-raiders"><img alt="weapons tracked live" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmetaforge.app%2Fapi%2Farc-raiders%2Fitems%3Fitem_type%3DWeapon%26limit%3D1&query=%24.pagination.total&label=weapons&color=ff7a3d&labelColor=0b0f1c&style=for-the-badge&cacheSeconds=3600"></a> <a href="https://metaforge.app/arc-raiders"><img alt="legendaries tracked live" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmetaforge.app%2Fapi%2Farc-raiders%2Fitems%3Frarity%3DLegendary%26limit%3D1&query=%24.pagination.total&label=legendaries&color=ffd166&labelColor=0b0f1c&style=for-the-badge&cacheSeconds=3600"></a> <a href="https://metaforge.app/arc-raiders"><img alt="quests tracked live" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmetaforge.app%2Fapi%2Farc-raiders%2Fquests%3Flimit%3D1&query=%24.pagination.total&label=quests&color=2ee6d6&labelColor=0b0f1c&style=for-the-badge&cacheSeconds=3600"></a> <a href="https://metaforge.app/arc-raiders"><img alt="ARC enemies tracked live" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmetaforge.app%2Fapi%2Farc-raiders%2Farcs%3Flimit%3D1&query=%24.pagination.total&label=ARC+enemies&color=e63946&labelColor=0b0f1c&style=for-the-badge&cacheSeconds=3600"></a>
+</p>
+
 ## Highlights
 
-- **Zero runtime dependencies.** Built on standard `fetch`, so it runs on Node 20+ and in modern browsers. ESM and CommonJS builds, tree-shakeable.
-- **Typed from real responses.** Every endpoint is modeled on what MetaForge returns today, not on guesses. Known enums stay open, so new rarities or item types never break your build.
-- **Handles the API's quirks for you.** De-duplicated pagination (the server sort is unstable), case-insensitive filters, multi-value filters, the map endpoint living outside `/arc-raiders`, quest 404s turning into `undefined`.
-- **Resilient.** Retries with exponential backoff and jitter, `Retry-After` support, timeouts, `AbortSignal`, in-flight request de-duplication and one typed error class with a machine readable `code`.
-- **Smart caching.** LRU cache with per resource TTLs, stale-while-revalidate and pluggable stores (Redis, localStorage, files).
-- **Game logic built in.** Quest prerequisite graph, "what can I do next", shopping lists for your next quests, item usage across quests, ARC loot, traders and Ermal, live and upcoming events, stat rankings, value per weight.
-- **React hooks** with a shared client, abort on unmount and a live event board hook.
-- **CLI** for quick lookups from the terminal, with a disk cache.
-- **Contract tested** against the live API every week, so drift on MetaForge's side shows up as an issue, not as a bug report.
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### 🧩 Zero dependencies
+
+Built on standard `fetch`. Runs on Node 20+ and in modern browsers. ESM and CommonJS, tree-shakeable, signed with npm provenance.
+
+</td>
+<td width="33%" valign="top">
+
+### 🎯 Typed from real data
+
+Every type is modeled on what MetaForge returns today. Known enums stay open, so a new rarity never breaks your build.
+
+</td>
+<td width="33%" valign="top">
+
+### 🛡️ Resilient by default
+
+Retries with backoff and jitter, `Retry-After`, timeouts, `AbortSignal`, request de-duplication and typed error codes.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### ⚡ Smart caching
+
+LRU cache with per resource TTLs, stale-while-revalidate and pluggable stores like Redis or localStorage.
+
+</td>
+<td valign="top">
+
+### 🗺️ Game logic built in
+
+Quest chains in play order, "what can I do next", shopping lists, keep-or-recycle, live events, stat rankings, value per weight.
+
+</td>
+<td valign="top">
+
+### 🔎 Fuzzy search
+
+Offline, typo tolerant search across items, quests and ARCs. `"ferro 2"` finds Ferro II, `"matriach"` finds the Matriarch Reactor.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### ⚛️ React hooks
+
+Shared client and cache, abort on unmount, a live event board hook and debounced search.
+
+</td>
+<td valign="top">
+
+### 💻 CLI
+
+`npx arc-raiders` for quick lookups in the terminal, table or JSON output and a disk cache.
+
+</td>
+<td valign="top">
+
+### 📡 Contract tested
+
+Checked against the live API every week. When MetaForge changes something, it shows up as an issue here, not as a bug in your app.
+
+</td>
+</tr>
+</table>
+
+## How it works
+
+<p align="center">
+<img src="assets/architecture.svg" alt="Your code calls typed resources and game logic helpers. Requests go through cache, de-duplication, retries and a fetch or Playwright transport to the MetaForge API." width="100%">
+</p>
+
+The quirks of the API are handled in the pipeline: MetaForge sorts paginated results non-deterministically, so pages are de-duplicated by id. Filters are case-sensitive upstream and accept only one value, the client normalizes and filters locally where needed. The map endpoint lives outside `/arc-raiders`, quest lookups 404 instead of returning empty, all of that is hidden behind one consistent API.
 
 ## Install
 
@@ -293,6 +384,12 @@ Hooks: `useItems`, `useItem`, `useWeapons`, `useQuests`, `useArcs`, `useTraders`
 
 ## CLI
 
+<p align="center">
+<img src="assets/cli-demo.svg" alt="Terminal running arc-raiders search, usage and quest --chain against the live API" width="760">
+</p>
+
+<p align="center"><sub>Real output, recorded against the live API.</sub></p>
+
 ```bash
 npx @justinjd00/arc-raiders-api events
 ```
@@ -374,8 +471,21 @@ This project is not affiliated with MetaForge or Embark Studios. ARC Raiders is 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). `npm test` runs offline, `npm run test:contract` checks the live API.
+See [CONTRIBUTING.md](CONTRIBUTING.md). `npm test` runs offline, `npm run test:contract` checks the live API. Found a quirk in the API or a missing field? [Open an issue](https://github.com/justinjd00/arc-raiders-wrapper/issues/new).
+
+## Star history
+
+<a href="https://star-history.com/#justinjd00/arc-raiders-wrapper&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=justinjd00/arc-raiders-wrapper&type=Date&theme=dark">
+    <img alt="Star history of arc-raiders-wrapper" src="https://api.star-history.com/svg?repos=justinjd00/arc-raiders-wrapper&type=Date" width="100%">
+  </picture>
+</a>
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) · Made by [Justin Dewitz](https://github.com/justinjd00) · Game data by [MetaForge](https://metaforge.app/arc-raiders)
+
+<p align="center">
+<img src="https://img.shields.io/badge/built_for-raiders_topside-ff7a3d?style=flat-square&labelColor=0b0f1c" alt="built for raiders topside">
+</p>

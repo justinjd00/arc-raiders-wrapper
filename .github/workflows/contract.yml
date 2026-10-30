@@ -2,10 +2,18 @@ name: API contract
 
 # MetaForge says their endpoints can change without notice. This runs the
 # client against the live API every week and opens an issue when it breaks.
+# It also runs when the client changes on main, which keeps the README badge
+# current.
 
 on:
   schedule:
     - cron: '17 6 * * 1'
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'contract/**'
+      - '.github/workflows/contract.yml'
   workflow_dispatch:
 
 permissions:
