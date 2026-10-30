@@ -1,0 +1,552 @@
+[
+  {
+    "id": "picking-up-the-pieces",
+    "name": "Picking Up The Pieces",
+    "description": "The storm has mostly settled, but much of our infrastructure has taken a proper beating. If you're hoping to stay with us, I'll need you to pull your weight in the repair efforts.",
+    "trader_name": "Shani",
+    "objectives": ["Visit any area on your map with a loot category icon", "Loot 3 containers"],
+    "xp": 0,
+    "required_items": [],
+    "rewards": [
+      {
+        "item_id": "rattler-iii",
+        "quantity": 1,
+        "id": 0,
+        "item": {
+          "id": "rattler-iii",
+          "name": "Rattler III",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/4dc8f4476f93fa84a22eefaf6f468f0acbd7fa4a416390f767e6de703340c152.png",
+          "rarity": "Common",
+          "item_type": "Weapon"
+        }
+      },
+      {
+        "item_id": "medium-ammo",
+        "quantity": 80,
+        "id": 1,
+        "item": {
+          "id": "medium-ammo",
+          "name": "Medium Ammo",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/a900849500f527683c2bf299aa81a181420da6c57f930b6ba648c25ee7776bc9.png",
+          "rarity": "Common",
+          "item_type": "Ammunition"
+        }
+      }
+    ],
+    "granted_items": [],
+    "additional_rewards": [
+      {
+        "kind": "currency",
+        "name": "XP",
+        "quantity": 1000
+      }
+    ],
+    "locations": [],
+    "created_at": "2025-10-17T09:53:44.522777+00:00",
+    "updated_at": "2026-10-27T12:30:24.714+00:00",
+    "manifest": {
+      "cadence": "NARRATIVE",
+      "prerequisites": [],
+      "objective_graph": [
+        {
+          "id": "objective-0",
+          "kind": "SEQUENCE",
+          "description": null,
+          "hidden": false,
+          "optional": false,
+          "required_count": 0,
+          "round_constraint": "UNSPECIFIED",
+          "children": ["objective-1", "objective-2"]
+        }
+      ]
+    }
+  },
+  {
+    "id": "clearer-skies",
+    "name": "Clearer Skies",
+    "description": "A swarm of disoriented Wasps crashed near one of our skylights.\r\n\r\nI need you to help thin ARC's ranks before any more accidents happen, and gather some extra sturdy materials to fix the damage.",
+    "trader_name": "Shani",
+    "objectives": ["Destroy 3 ARC enemies", "Get 3 ARC Alloy for Shani"],
+    "xp": 0,
+    "required_items": [
+      {
+        "id": 0,
+        "item": {
+          "id": "arc-alloy",
+          "name": "ARC Alloy",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/723c893493ea1799d08c5f706ba6ffef500ac6f7dfd3778df811ee91600bb1a4.png",
+          "rarity": "Uncommon",
+          "item_type": "Topside Material"
+        },
+        "item_id": "arc-alloy",
+        "quantity": 3
+      }
+    ],
+    "rewards": [
+      {
+        "item_id": "sterilized-bandage",
+        "quantity": 3,
+        "id": 0,
+        "item": {
+          "id": "sterilized-bandage",
+          "name": "Sterilized Bandage",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/351ae673886bcb208d2b73344ecffade9e42b3234de6148bb09b09c851bc026b.png",
+          "rarity": "Rare",
+          "item_type": "Quick Use"
+        }
+      },
+      {
+        "item_id": "light-shield",
+        "quantity": 1,
+        "id": 1,
+        "item": {
+          "id": "light-shield",
+          "name": "Light Shield",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/69a670f5c65d3de75ade59c44b33d3809570eea1b52b79a6acb62f5947df25b8.png",
+          "rarity": "Uncommon",
+          "item_type": "Shield"
+        }
+      },
+      {
+        "item_id": "black-hiker-colour",
+        "quantity": 1,
+        "id": 2,
+        "item": {
+          "id": "black-hiker-colour",
+          "name": "Black (Hiker Colour)",
+          "icon": "https://static.metaforge.app/arc-raiders/icons/black-hiker-colour.webp",
+          "rarity": "Common",
+          "item_type": "Cosmetic"
+        }
+      }
+    ],
+    "granted_items": [],
+    "additional_rewards": [
+      {
+        "kind": "currency",
+        "name": "XP",
+        "quantity": 1000
+      }
+    ],
+    "locations": [],
+    "created_at": "2025-10-17T12:53:06.499633+00:00",
+    "updated_at": "2026-10-27T12:30:24.714+00:00",
+    "manifest": {
+      "cadence": "NARRATIVE",
+      "prerequisites": [
+        {
+          "quest_id": "picking-up-the-pieces",
+          "required_state": "COMPLETED",
+          "name": "Picking Up The Pieces"
+        }
+      ],
+      "objective_graph": [
+        {
+          "id": "objective-0",
+          "kind": "ALL_OF",
+          "description": null,
+          "hidden": false,
+          "optional": false,
+          "required_count": 0,
+          "round_constraint": "UNSPECIFIED",
+          "children": ["objective-1", "objective-2"]
+        }
+      ]
+    }
+  },
+  {
+    "id": "off-the-raider",
+    "name": "Off The Radar",
+    "description": "The damage down here was pretty bad, but our Topside infrastructure was hit even harder. I still have several antennas that stopped working after the storm.",
+    "trader_name": "Shani",
+    "objectives": ["Visit a Field Depot", "Repair the antenna on the roof of the Field Depot"],
+    "xp": 0,
+    "required_items": [],
+    "rewards": [
+      {
+        "item_id": "defibrillator",
+        "quantity": 2,
+        "id": 0,
+        "item": {
+          "id": "defibrillator",
+          "name": "Defibrillator",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/1aef07229aa99c8801612a889958b02f7faf5928905d6912bb6af480bbe403f1.png",
+          "rarity": "Rare",
+          "item_type": "Quick Use"
+        }
+      }
+    ],
+    "granted_items": [
+      {
+        "item_id": "remote-raider-flare",
+        "quantity": 2,
+        "id": 0,
+        "item": {
+          "id": "remote-raider-flare",
+          "name": "Remote Raider Flare",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/05dfecbd9531d3cb12ff76726e0f0876e653b801ec411db48aa32d27aa214176.png",
+          "rarity": "Common",
+          "item_type": "Quick Use"
+        }
+      }
+    ],
+    "additional_rewards": [
+      {
+        "kind": "cosmetic-option",
+        "name": "Black White",
+        "quantity": 1,
+        "group": "Origin",
+        "setting": "Color"
+      },
+      {
+        "kind": "currency",
+        "name": "XP",
+        "quantity": 2500
+      }
+    ],
+    "locations": [],
+    "created_at": "2025-10-17T15:40:35.877091+00:00",
+    "updated_at": "2026-10-27T12:30:24.714+00:00",
+    "manifest": {
+      "cadence": "NARRATIVE",
+      "prerequisites": [
+        {
+          "quest_id": "clearer-skies",
+          "required_state": "COMPLETED",
+          "name": "Clearer Skies"
+        },
+        {
+          "quest_id": "trash-into-treasure",
+          "required_state": "COMPLETED",
+          "name": "Trash Into Treasure"
+        }
+      ],
+      "objective_graph": [
+        {
+          "id": "objective-0",
+          "kind": "SEQUENCE",
+          "description": null,
+          "hidden": false,
+          "optional": false,
+          "required_count": 0,
+          "round_constraint": "IN_ONE_ROUND",
+          "children": ["objective-1", "objective-2"]
+        }
+      ]
+    }
+  },
+  {
+    "id": "a-bad-feeling",
+    "name": "A Bad Feeling",
+    "description": "Even the slightest change to ARC's behavior could spell disaster.\r\n\r\nAnd that signal you heard? It's like nothing we've ever picked up. If they're up to something, we need to find out whatever we can.",
+    "trader_name": "Celeste",
+    "objectives": ["Find and search any ARC Probe or ARC Courier"],
+    "xp": 0,
+    "required_items": [],
+    "rewards": [
+      {
+        "item_id": "metal-parts",
+        "quantity": 10,
+        "id": 0,
+        "item": {
+          "id": "metal-parts",
+          "name": "Metal Parts",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/5f3d81d62f671bc094dc3b5ac755f60d2c7ff6fbd38ebfe0ab71d626d846729c.png",
+          "rarity": "Common",
+          "item_type": "Basic Material"
+        }
+      },
+      {
+        "item_id": "spring",
+        "quantity": 5,
+        "id": 1,
+        "item": {
+          "id": "spring",
+          "name": "Steel Spring",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/96c07fa1c6e5e42b342a54f86f3258cf69c1d5c3f27bf49ccc79d511fccc38bf.png",
+          "rarity": "Uncommon",
+          "item_type": "Topside Material"
+        }
+      },
+      {
+        "item_id": "duct-tape-recipe",
+        "quantity": 5,
+        "id": 2,
+        "item": {
+          "id": "duct-tape-recipe",
+          "name": "Duct Tape",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/7f3b02ebf62b0090609ba464137f3092b91ba7f3f44b7aa8d8f8769e2f68a393.png",
+          "rarity": "Uncommon",
+          "item_type": "Topside Material"
+        }
+      }
+    ],
+    "granted_items": [],
+    "additional_rewards": [
+      {
+        "kind": "currency",
+        "name": "XP",
+        "quantity": 5000
+      }
+    ],
+    "locations": [],
+    "created_at": "2025-10-07T14:15:00.671965+00:00",
+    "updated_at": "2026-10-27T12:30:24.714+00:00",
+    "manifest": {
+      "cadence": "NARRATIVE",
+      "prerequisites": [
+        {
+          "quest_id": "off-the-raider",
+          "required_state": "COMPLETED",
+          "name": "Off The Radar"
+        }
+      ],
+      "objective_graph": [
+        {
+          "id": "objective-0",
+          "kind": "ATOMIC",
+          "description": "Find and search any ARC Probe or ARC Courier",
+          "hidden": false,
+          "optional": false,
+          "required_count": 0,
+          "round_constraint": "UNSPECIFIED",
+          "children": [],
+          "action": {
+            "type": "Interact",
+            "amount": 1
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "after-rain-comes",
+    "name": "After Rain Comes",
+    "description": "I know, I know! The power's down in sector\u2014\r\nOh, hey. A flash flood took out some of our solar panels in Buried City, and the generators only hold on for so long.\r\n\r\nDo us all a solid when you're up there, OK?",
+    "trader_name": "Celeste",
+    "objectives": [
+      "Find the flooded solar panels nearby the Grandioso Apartments",
+      "Repair the solar panels using 5 Wires and 2 Batteries"
+    ],
+    "xp": 0,
+    "required_items": [
+      {
+        "id": 0,
+        "item": {
+          "id": "wires-recipe",
+          "name": "Wires",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/01e737231d5f4ed624d3883ea45234b0a75756a52bd1d0eb49c22b7f439aabbc.png",
+          "rarity": "Uncommon",
+          "item_type": "Topside Material"
+        },
+        "item_id": "wires-recipe",
+        "quantity": 5
+      },
+      {
+        "id": 1,
+        "item": {
+          "id": "battery",
+          "name": "Battery",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/5df6141a282776aa2c25d45278cc7d699ef96624886d743e3f8865bbef8d7bb5.png",
+          "rarity": "Uncommon",
+          "item_type": "Topside Material"
+        },
+        "item_id": "battery",
+        "quantity": 2
+      }
+    ],
+    "rewards": [
+      {
+        "item_id": "blue-light-stick",
+        "quantity": 5,
+        "id": 0,
+        "item": {
+          "id": "blue-light-stick",
+          "name": "Blue Light Stick",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/ae0627b40d61747106b940cb528e9c9643c3f4eca78a74fecd0a9a4487bedbd0.png",
+          "rarity": "Common",
+          "item_type": "Quick Use"
+        }
+      },
+      {
+        "item_id": "antiseptic",
+        "quantity": 3,
+        "id": 1,
+        "item": {
+          "id": "antiseptic",
+          "name": "Antiseptic",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/c4d0c8aa01f64123e0b8b1ffee347026f9b839b1c177362f6c85b23d8b662738.png",
+          "rarity": "Rare",
+          "item_type": "Refined Material"
+        }
+      },
+      {
+        "item_id": "durable-cloth",
+        "quantity": 5,
+        "id": 2,
+        "item": {
+          "id": "durable-cloth",
+          "name": "Durable Cloth",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/049681d0266e546d501ce8a9ab3df88543faa87f39a291c381bdea3ea67afa78.png",
+          "rarity": "Uncommon",
+          "item_type": "Refined Material"
+        }
+      }
+    ],
+    "granted_items": [
+      {
+        "item_id": "zipline",
+        "quantity": 1,
+        "id": 0,
+        "item": {
+          "id": "zipline",
+          "name": "Zipline",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/2676ef459d89de8b603111c30c7574d64623aeaa78571b3f6b8e77f476a45d81.png",
+          "rarity": "Rare",
+          "item_type": "Quick Use"
+        }
+      }
+    ],
+    "additional_rewards": [
+      {
+        "kind": "currency",
+        "name": "XP",
+        "quantity": 2500
+      }
+    ],
+    "locations": [],
+    "created_at": "2025-10-07T14:15:04.803743+00:00",
+    "updated_at": "2026-10-27T12:30:24.714+00:00",
+    "manifest": {
+      "cadence": "NARRATIVE",
+      "prerequisites": [
+        {
+          "quest_id": "eyes-in-the-sky",
+          "required_state": "COMPLETED",
+          "name": "Eyes in the Sky"
+        }
+      ],
+      "objective_graph": [
+        {
+          "id": "objective-0",
+          "kind": "SEQUENCE",
+          "description": null,
+          "hidden": false,
+          "optional": false,
+          "required_count": 0,
+          "round_constraint": "UNSPECIFIED",
+          "children": ["objective-1", "objective-2"]
+        }
+      ]
+    }
+  },
+  {
+    "id": "clamoring-for-attention",
+    "name": "Clamoring for Attention",
+    "description": "I think I've found something we might exploit. When bigger ARC machines are just far enough from each other, a well-timed distraction could pull one out of position. You want to test that idea?",
+    "trader_name": "Shani",
+    "objectives": [
+      "Use 3 Wires to repair and sound the emergency siren by the Warehouse Complex",
+      "Use a Battery to start the boom box in the Village",
+      "Sound any bus horn by the Checkpoint"
+    ],
+    "xp": 0,
+    "required_items": [
+      {
+        "id": 0,
+        "item": {
+          "id": "wires-recipe",
+          "name": "Wires",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/01e737231d5f4ed624d3883ea45234b0a75756a52bd1d0eb49c22b7f439aabbc.png",
+          "rarity": "Uncommon",
+          "item_type": "Topside Material"
+        },
+        "item_id": "wires-recipe",
+        "quantity": 3
+      },
+      {
+        "id": 1,
+        "item": {
+          "id": "battery",
+          "name": "Battery",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/5df6141a282776aa2c25d45278cc7d699ef96624886d743e3f8865bbef8d7bb5.png",
+          "rarity": "Uncommon",
+          "item_type": "Topside Material"
+        },
+        "item_id": "battery",
+        "quantity": 1
+      }
+    ],
+    "rewards": [
+      {
+        "item_id": "lure-grenade",
+        "quantity": 5,
+        "id": 0,
+        "item": {
+          "id": "lure-grenade",
+          "name": "Lure Grenade",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/4c403880e106a69575813cb0c8052a335704bd3034f1580ca30d93b826a8f53b.png",
+          "rarity": "Uncommon",
+          "item_type": "Quick Use"
+        }
+      },
+      {
+        "item_id": "noisemaker",
+        "quantity": 5,
+        "id": 1,
+        "item": {
+          "id": "noisemaker",
+          "name": "Noisemaker",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/03f75855b5b4a68ad5d9bc3b2ea2f058b2b33bcbcb2dddb3fb3b46866bfdfa25.png",
+          "rarity": "Common",
+          "item_type": "Quick Use"
+        }
+      },
+      {
+        "item_id": "tagging-grenade",
+        "quantity": 3,
+        "id": 2,
+        "item": {
+          "id": "tagging-grenade",
+          "name": "Tagging Grenade",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/4a3ce0cbe8fe87cf44cd051e675901a17af99ea46231fd15ac5bb485d264632d.png",
+          "rarity": "Rare",
+          "item_type": "Quick Use"
+        }
+      }
+    ],
+    "granted_items": [],
+    "additional_rewards": [
+      {
+        "kind": "currency",
+        "name": "XP",
+        "quantity": 5000
+      }
+    ],
+    "locations": [],
+    "created_at": "2026-03-31T09:45:22.585499+00:00",
+    "updated_at": "2026-10-27T12:30:24.714+00:00",
+    "manifest": {
+      "cadence": "NARRATIVE",
+      "prerequisites": [
+        {
+          "quest_id": "dormant-barons",
+          "required_state": "COMPLETED",
+          "name": "Dormant Barons"
+        }
+      ],
+      "objective_graph": [
+        {
+          "id": "objective-0",
+          "kind": "ALL_OF",
+          "description": null,
+          "hidden": false,
+          "optional": false,
+          "required_count": 0,
+          "round_constraint": "UNSPECIFIED",
+          "children": ["objective-1", "objective-2", "objective-3"]
+        }
+      ]
+    }
+  }
+]

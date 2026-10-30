@@ -1,0 +1,572 @@
+{
+  "success": true,
+  "data": {
+    "Apollo": [
+      {
+        "id": "barricade-kit",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/ba60825f710a56390176a874af212a413552a4a7a458d7a0ff55ae75f547a911.png",
+        "name": "Barricade Kit",
+        "value": 640,
+        "rarity": "Uncommon",
+        "item_type": "Quick Use",
+        "description": "A deployable cover that can block incoming damage until it breaks.",
+        "trader_price": 1920
+      },
+      {
+        "id": "blaze-grenade",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/04aa543b63dda602e46d32d16f106e30cdde922af601538981bf3d9c68247da2.png",
+        "name": "Blaze Grenade",
+        "value": 1600,
+        "rarity": "Rare",
+        "item_type": "Quick Use",
+        "description": "A grenade that detonates on impact, covering an area in fire that deals damage over time.",
+        "trader_price": 4800
+      },
+      {
+        "id": "dockmasters-detector",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/37c76f5c2ae23e69fe9ed1945317169cfece82f94f279bb0d19a0e6fda433261.png",
+        "name": "Dockmaster's Detector",
+        "value": 1000,
+        "rarity": "Uncommon",
+        "item_type": "Quick Use",
+        "description": "These detectors seem to be able to locate foreign objects buried in the sands around Riven Tides, though their exact way of functioning is unknown.",
+        "trader_price": 1920
+      },
+      {
+        "id": "door-blocker",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/ca2b4a3b43168542c95cb060092e4693d8b9da68b0752eb13eb3a1bd4259d739.png",
+        "name": "Door Blocker",
+        "value": 270,
+        "rarity": "Common",
+        "item_type": "Quick Use",
+        "description": "A locking mechanism that can be placed on large metal doors to limit access.",
+        "trader_price": 810
+      }
+    ],
+    "Celeste": [
+      {
+        "id": "battery",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/5df6141a282776aa2c25d45278cc7d699ef96624886d743e3f8865bbef8d7bb5.png",
+        "name": "Battery",
+        "value": 250,
+        "rarity": "Uncommon",
+        "item_type": "Topside Material",
+        "description": "Used to craft a wide range of items. Can be recycled into scrap metal.",
+        "trader_price": 5
+      },
+      {
+        "id": "canister",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/3557f8df65100a60256da73aa4a055021f0009c095193de95802267a7eaf2dd8.png",
+        "name": "Canister",
+        "value": 300,
+        "rarity": "Uncommon",
+        "item_type": "Topside Material",
+        "description": "Used to craft a wide range of items. Can be recycled into plastic.",
+        "trader_price": 6
+      },
+      {
+        "id": "chemicals",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/2af08b347b7c2e1825f68781780dd06c6155806885ea301406a709def60f36d3.png",
+        "name": "Chemicals",
+        "value": 50,
+        "rarity": "Common",
+        "item_type": "Basic Material",
+        "description": "Used to craft medical supplies, explosives, and utility items.",
+        "trader_price": 1
+      },
+      {
+        "id": "complex-gun-parts",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/f89ec15fe5f8d48de02a92dd5cccc8537281af9eaa1e75740c4238be64978965.png",
+        "name": "Complex Gun Parts",
+        "value": 3000,
+        "rarity": "Epic",
+        "item_type": "Topside Material",
+        "description": "Used to craft advanced weapons.",
+        "trader_price": 60
+      }
+    ],
+    "Lance": [
+      {
+        "id": "adrenaline-shot",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/9e21d8cae98c65d55483bf37c7cf06d9dbff738d2a3c645d4d2f7abd7fc83941.png",
+        "name": "Adrenaline Shot",
+        "value": 300,
+        "rarity": "Common",
+        "item_type": "Quick Use",
+        "description": "A serum that fully restores stamina and temporarily increases stamina regeneration.",
+        "trader_price": 900
+      },
+      {
+        "id": "bandage",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/13c24f471f1344ead4c73185a4b9d5a1ba35564584bb0a2879c884ff70bd189b.png",
+        "name": "Bandage",
+        "value": 250,
+        "rarity": "Common",
+        "item_type": "Quick Use",
+        "description": "A medical item that gradually restores health over time.",
+        "trader_price": 750
+      },
+      {
+        "id": "combat-mk-1",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/d412eeea0c8bfeb131a25573c1674618c094db3b45a4f1dc0ad9f5838cf7ea32.png",
+        "name": "Combat Mk. 1",
+        "value": 640,
+        "rarity": "Uncommon",
+        "item_type": "Augment",
+        "description": "Basic combat augment. Supports stronger shields, but with limited backpack capacity and Quick Use slots.",
+        "trader_price": 1920
+      },
+      {
+        "id": "combat-mk-2",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/02a71d61c0f0ebf1335239d98081e63253b6a5811ced40d2f3130d36808fc7b6.png",
+        "name": "Combat Mk. 2",
+        "value": 2000,
+        "rarity": "Rare",
+        "item_type": "Augment",
+        "description": "A combat augment more focused on maneuverability than absorbing damage.",
+        "trader_price": 6000
+      }
+    ],
+    "Shani": [
+      {
+        "id": "advanced-camera",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20261007/f941d39ae5e5a5ea3c026da764d92020fc64c6b7af4b66570f1a8494d77c37ea.png",
+        "name": "Advanced Camera",
+        "value": 1000,
+        "rarity": "Rare",
+        "item_type": "Quick Use",
+        "description": "A more advanced camera with a few extra bells and whistles.",
+        "trader_price": 3000
+      },
+      {
+        "id": "camera",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20261007/634bc0f4089e315d98063c5b1bd4276aa23abc14026e030be36c91e40da3cf7a.png",
+        "name": "Basic Camera",
+        "value": 640,
+        "rarity": "Uncommon",
+        "item_type": "Quick Use",
+        "description": "A simple little camera that gets the job done.",
+        "trader_price": 1920
+      },
+      {
+        "id": "binoculars",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/70ffa91f9aaea31533394802e9b232de7240ac4e0c116eb3d2880817201b2df0.png",
+        "name": "Binoculars",
+        "value": 640,
+        "rarity": "Common",
+        "item_type": "Quick Use",
+        "description": "A basic pair of binoculars with two levels of magnification.",
+        "trader_price": 1920
+      },
+      {
+        "id": "blue-light-stick",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/ae0627b40d61747106b940cb528e9c9643c3f4eca78a74fecd0a9a4487bedbd0.png",
+        "name": "Blue Light Stick",
+        "value": 150,
+        "rarity": "Common",
+        "item_type": "Quick Use",
+        "description": "A throwable chemical light that illuminates the area around it.",
+        "trader_price": 3000
+      }
+    ],
+    "TianWen": [
+      {
+        "id": "angled-grip-i",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/4c44e2619035fa0140a30f8a263e1f3d5c1eee956512de3d534703d8442162b8.png",
+        "name": "Angled Grip I",
+        "value": 640,
+        "rarity": "Common",
+        "item_type": "Modification",
+        "description": "Slightly reduces horizontal recoil.",
+        "trader_price": 1920
+      },
+      {
+        "id": "angled-grip-ii",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/ca9c7e950391d0bd2178e314d76a2a2416cc5e157873b8093f543fd6a8b69944.png",
+        "name": "Angled Grip II",
+        "value": 2000,
+        "rarity": "Uncommon",
+        "item_type": "Modification",
+        "description": "Moderately reduces horizontal recoil.",
+        "trader_price": 6000
+      },
+      {
+        "id": "angled-grip-iii",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/a1be5d197069e1627c19c78c9983e6a94719d88600a48308756126640c62c008.png",
+        "name": "Angled Grip III",
+        "value": 5000,
+        "rarity": "Rare",
+        "item_type": "Modification",
+        "description": "Significantly reduces horizontal recoil.",
+        "trader_price": 15000
+      },
+      {
+        "id": "arpeggio-i",
+        "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/dc3c4f9e8305eb41d5048c817029995c8197586441640c96f006e206f2ac95f2.png",
+        "name": "Arpeggio I",
+        "value": 5500,
+        "rarity": "Uncommon",
+        "item_type": "Weapon",
+        "description": "Has decent damage output and accuracy.",
+        "trader_price": 16500
+      }
+    ]
+  },
+  "ermal": {
+    "offers": [
+      {
+        "id": "5a9be174-55a0-4571-a264-1ea0c56f4507",
+        "offer_title": "2.3 Backpack Attachment: Cauldron",
+        "coin_cost": 50000,
+        "offer_start": "2026-10-27T13:00:00+00:00",
+        "offer_end": "2026-11-03T13:00:00+00:00",
+        "accepted_items": [
+          {
+            "id": "bronze-statuette",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/bronze-statuette.webp",
+            "name": "Bronze Statuette",
+            "value": 10000,
+            "amount": 1,
+            "rarity": "Legendary",
+            "item_type": "Trinket"
+          },
+          {
+            "id": "queen-reactor",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/queen-reactor.webp",
+            "name": "Queen Reactor",
+            "value": 11000,
+            "amount": 1,
+            "rarity": "Legendary",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "matriarch-reactor",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/matriarch-reactor.webp",
+            "name": "Matriarch Reactor",
+            "value": 11000,
+            "amount": 1,
+            "rarity": "Legendary",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "bombardier-cell",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/bombardier-cell.webp",
+            "name": "Bombardier Cell",
+            "value": 5000,
+            "amount": 1,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "assessor-matrix",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/assessor-matrix.webp",
+            "name": "Assessor Matrix",
+            "value": 5000,
+            "amount": 1,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "bully-fragmenter",
+            "icon": null,
+            "name": "Bully Fragmenter",
+            "value": null,
+            "amount": 1,
+            "rarity": null,
+            "item_type": null
+          },
+          {
+            "id": "turbine-compressor",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/turbine-compressor.webp",
+            "name": "Turbine Compressor",
+            "value": 5000,
+            "amount": 1,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "leaper-pulse-unit",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/leaper-pulse-unit.webp",
+            "name": "Leaper Pulse Unit",
+            "value": 5000,
+            "amount": 1,
+            "rarity": "Epic",
+            "item_type": "Throwable"
+          },
+          {
+            "id": "bastion-part",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/bastion-part.webp",
+            "name": "Bastion Cell",
+            "value": 3000,
+            "amount": 1,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "vaporizer-regulator",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/vaporizer-regulator.webp",
+            "name": "Vaporizer Regulator",
+            "value": 6000,
+            "amount": 1,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "rocketeer-part",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/rocketeer-part.webp",
+            "name": "Rocketeer Driver",
+            "value": 5000,
+            "amount": 1,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          }
+        ],
+        "item": {
+          "id": "game-cosmetic-7092746",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/1b38cba5c876240eb84f77f064690175c11751bb360eb599276cba1aa0f2190c.png",
+          "name": "Cauldron (Backpack Attachment)",
+          "value": null,
+          "rarity": null,
+          "item_type": "Cosmetic",
+          "description": null
+        }
+      },
+      {
+        "id": "dd0aa881-99b2-4a14-aede-0c245e8a8893",
+        "offer_title": "Anvil II",
+        "coin_cost": 20000,
+        "offer_start": "2026-10-27T13:00:00+00:00",
+        "offer_end": "2026-11-03T13:00:00+00:00",
+        "accepted_items": [
+          {
+            "id": "any-firearm",
+            "icon": "weapons/any_firearm",
+            "name": "Any Firearm",
+            "value": 20000,
+            "rarity": "Common",
+            "item_type": "Firearm",
+            "is_category": true
+          },
+          {
+            "id": "wasp-driver",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/wasp-driver.webp",
+            "name": "Wasp Driver",
+            "value": 640,
+            "amount": 1,
+            "rarity": "Rare",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "fireball-burner",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/fireball-burner.webp",
+            "name": "Fireball Burner",
+            "value": 640,
+            "amount": 1,
+            "rarity": "Uncommon",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "shredder-gyro",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/shredder-gyro.webp",
+            "name": "Shredder Gyro",
+            "value": 3000,
+            "amount": 1,
+            "rarity": "Rare",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "surveyor-vault",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/surveyor-vault.webp",
+            "name": "Surveyor Vault",
+            "value": 1000,
+            "amount": 1,
+            "rarity": "Rare",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "sentinel-part",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/sentinel-part.webp",
+            "name": "Sentinel Firing Core",
+            "value": 2000,
+            "amount": 1,
+            "rarity": "Rare",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "bronze-statuette",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/bronze-statuette.webp",
+            "name": "Bronze Statuette",
+            "value": 10000,
+            "amount": 1,
+            "rarity": "Legendary",
+            "item_type": "Trinket"
+          },
+          {
+            "id": "snitch-scanner",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/snitch-scanner.webp",
+            "name": "Snitch Scanner",
+            "value": 2000,
+            "amount": 1,
+            "rarity": "Uncommon",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "spotter-relay",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/spotter-relay.webp",
+            "name": "Spotter Relay",
+            "value": 1000,
+            "amount": 1,
+            "rarity": "Uncommon",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "tick-pod",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/tick-pod.webp",
+            "name": "Tick Pod",
+            "value": 640,
+            "amount": 1,
+            "rarity": "Uncommon",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "comet-igniter",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/comet-igniter.webp",
+            "name": "Comet Igniter",
+            "value": 1000,
+            "amount": 1,
+            "rarity": "Rare",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "hornet-driver",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/hornet-driver.webp",
+            "name": "Hornet Driver",
+            "value": 1000,
+            "amount": 1,
+            "rarity": "Rare",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "pop-trigger",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/pop-trigger.webp",
+            "name": "Pop Trigger",
+            "value": 640,
+            "amount": 1,
+            "rarity": "Uncommon",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "firefly-burner",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/firefly-bruner.webp",
+            "name": "Firefly Burner",
+            "value": 1000,
+            "amount": 1,
+            "rarity": "Rare",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "skulker-targeter",
+            "icon": null,
+            "name": "Skulker Targeter",
+            "value": null,
+            "amount": 1,
+            "rarity": null,
+            "item_type": null
+          }
+        ],
+        "item": {
+          "id": "anvil-ii",
+          "icon": "https://static.metaforge.app/arc-raiders/preview/20260919/1b66f01227d5480212a81d6d7ef0d11cf0f6ee580668b87f6bb46557d4f749b9.png",
+          "name": "Anvil II",
+          "value": 7000,
+          "rarity": "Rare",
+          "item_type": "Weapon",
+          "description": "Has high damage output and headshot damage, but slow handling."
+        }
+      }
+    ],
+    "permanent_services": [
+      {
+        "id": "expedition-vault",
+        "name": "Expedition Vault",
+        "description": "Safely stores items between expeditions so they survive your next raid. Upgrades available 5 times. Expedition Vault slots +1 per upgrade (+5 slots total).",
+        "coin_cost": 200000,
+        "accepted_items": [
+          {
+            "id": "matriarch-reactor",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/matriarch-reactor.webp",
+            "name": "Matriarch Reactor",
+            "value": 11000,
+            "rarity": "Legendary",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "queen-reactor",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/queen-reactor.webp",
+            "name": "Queen Reactor",
+            "value": 11000,
+            "rarity": "Legendary",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "bombardier-cell",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/bombardier-cell.webp",
+            "name": "Bombardier Cell",
+            "value": 5000,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "assessor-matrix",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/assessor-matrix.webp",
+            "name": "Assessor Matrix",
+            "value": 5000,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "turbine-compressor",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/turbine-compressor.webp",
+            "name": "Turbine Compressor",
+            "value": 5000,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "vaporizer-regulator",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/vaporizer-regulator.webp",
+            "name": "Vaporizer Regulator",
+            "value": 6000,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "leaper-pulse-unit",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/leaper-pulse-unit.webp",
+            "name": "Leaper Pulse Unit",
+            "value": 5000,
+            "rarity": "Epic",
+            "item_type": "Throwable"
+          },
+          {
+            "id": "rocketeer-part",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/rocketeer-part.webp",
+            "name": "Rocketeer Driver",
+            "value": 5000,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          },
+          {
+            "id": "bastion-part",
+            "icon": "https://static.metaforge.app/arc-raiders/icons/bastion-part.webp",
+            "name": "Bastion Cell",
+            "value": 3000,
+            "rarity": "Epic",
+            "item_type": "Recyclable"
+          }
+        ]
+      }
+    ],
+    "synced_at": "2026-10-27T12:59:24.839+00:00"
+  }
+}
