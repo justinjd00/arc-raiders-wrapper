@@ -1,79 +1,51 @@
-# Contributing to Arc Raiders API Client
+# Contributing
 
-Thank you for your interest in contributing! This document provides guidelines and information for contributing to this project.
+Thanks for helping out. Bug reports, API drift reports and pull requests are all welcome.
 
-## Getting Started
+## Setup
 
-1. Fork the repository
-2. Clone your fork: `git clone https://github.com/justinjd00/arc-raiders-wrapper.git`
-3. Install dependencies: `npm install`
-4. Create a new branch: `git checkout -b feature/your-feature-name`
-
-## Development
-
-### Building
+Requires Node.js 22 or newer for development (the published package runs on Node 20+).
 
 ```bash
-npm run build
+git clone https://github.com/justinjd00/arc-raiders-wrapper.git
+cd arc-raiders-wrapper
+npm install
 ```
 
-### Type Checking
+## Scripts
+
+| Command                 | What it does                                          |
+| ----------------------- | ----------------------------------------------------- |
+| `npm run build`         | Builds ESM, CJS, type declarations and the CLI        |
+| `npm test`              | Offline unit tests (Vitest)                           |
+| `npm run test:contract` | Runs the client against the live MetaForge API        |
+| `npm run typecheck`     | `tsc --noEmit`                                        |
+| `npm run lint`          | ESLint                                                |
+| `npm run format`        | Prettier                                              |
+| `npm run check:package` | publint and are-the-types-wrong on the packed tarball |
+
+Before opening a PR, run `npm run build && npm run typecheck && npm run lint && npm test`.
+
+## Guidelines
+
+- Keep the core free of runtime dependencies.
+- Anything React goes to `src/react`, anything Playwright to `src/browser`, so the core stays tree-shakeable and browser friendly.
+- New API fields: add them to `src/arc-raiders/types.ts` as optional, MetaForge adds and removes fields regularly.
+- Every bug fix gets a test. Fixtures in `test/fixtures` are trimmed real responses, prefer extending them over inventing data.
+- Comment the why, not the what.
+
+## When the API changes
+
+The weekly `API contract` workflow opens an issue labeled `api-drift` when the live API no longer matches. To investigate locally:
 
 ```bash
-npx tsc --noEmit
+npm run test:contract
 ```
 
-### Code Style
+## Commit messages
 
-- Use TypeScript strict mode
-- Follow existing code style
-- No code comments
-- Use descriptive variable and function names
-- Keep functions small and focused
+Conventional commits, e.g. `feat: add trader filter`, `fix: handle empty event schedule`, `docs: ...`.
 
-## Pull Request Process
+## Reporting issues
 
-1. Update code following the project's style guidelines
-2. Ensure all types are properly defined
-3. Test your changes
-4. Update documentation if needed
-5. Submit a pull request with a clear description
-
-## Commit Messages
-
-Use clear, descriptive commit messages. For example:
-
-```
-feat: add support for trader inventory filtering
-fix: resolve timeout issue in map data fetching
-docs: update README with search examples
-```
-
-## Reporting Issues
-
-When reporting issues, please include:
-
-- Description of the issue
-- Steps to reproduce
-- Expected behavior
-- Actual behavior
-- Code example (if applicable)
-- Environment information (Node.js version, package version, etc.)
-
-## Feature Requests
-
-When requesting features, please include:
-
-- Clear description of the feature
-- Use case and problem it solves
-- Proposed solution
-- Alternatives considered
-
-## Code of Conduct
-
-- Be respectful and inclusive
-- Welcome newcomers and help them learn
-- Focus on constructive feedback
-
-Thank you for contributing!
-
+Include the package version, Node.js or browser version, a minimal code sample and the `code` of the `ArcRaidersError` if one was thrown.

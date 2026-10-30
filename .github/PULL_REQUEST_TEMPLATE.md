@@ -1,21 +1,14 @@
-## Description
+## What and why
 
-Brief description of changes
+## Type of change
 
-## Type of Change
-
-- [ ] Bugfix
+- [ ] Bug fix
 - [ ] Feature
-- [ ] Support
-
-## Testing
-
-How has this been tested?
+- [ ] API drift (MetaForge changed something)
+- [ ] Docs / tooling
 
 ## Checklist
 
-- [ ] Code follows the project's style guidelines
-- [ ] All types are properly defined
-- [ ] Documentation has been updated if necessary
-- [ ] No code comments remain
-- [ ] Documentation is up to date
+- [ ] `npm run build && npm run typecheck && npm run lint && npm test` pass
+- [ ] Tests added or updated
+- [ ] README and CHANGELOG updated if behavior changed
