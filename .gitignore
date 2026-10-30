@@ -1,14 +1,11 @@
 node_modules/
 dist/
+coverage/
 *.log
-.DS_Store
 *.tsbuildinfo
+*.tgz
+.DS_Store
 .idea/
 .vscode/
-coverage/
 .env
 .env.local
-test.ts
-*.test.ts
-*.spec.ts
-test-output/
